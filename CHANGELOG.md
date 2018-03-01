@@ -4,10 +4,30 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [these versioning and changelog guidelines][changelog-guidelines].
 
+<!--## Unreleased-->
+## 1.12.0 - 2018-02-28
+
+### Bug fixes
+* Fixed TextField overflow issues when inside Scrollable
+* Fixed Select focus state bug occuring in Firefox
+* Fixed vertical alignment of text within full width variant of the button component
+
+### Enhancements
+* Changed Checkbox label to allow string or React.ReactNode
+* Update `TextField` type with currency
+* Added `ariaControls`, `ariaExpanded` prop to Button
+* Updated the base red color to improve contrast
+* Added a notification icon to the bundled icons available to use in the icon component's source prop
+* Exposed Status from the Banner component
+
+### Chores
+* Added version number to source
+
 ## 1.11.0 - 2018-02-13
 * Changed Action to Disableable Action in Card
 ### Enhancements
 * Added `renderChildren` prop to choice list component
+* Added `titleHidden` prop to Page
 
 ### Bug fixes
 * Fixed an issue with footer help links not expanding to full-width on mobile devices
