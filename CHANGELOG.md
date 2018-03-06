@@ -5,7 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [these versioning and changelog guidelines][changelog-guidelines].
 
 <!--## Unreleased-->
+
+## 1.12.1 - 2018-03-06
+
+### Bug fixes
+* Fixed server-side environments
+
+### Documentation
+* Updated component examples that use state to use an es6 class.
+
 ## 1.12.0 - 2018-02-28
+* Added link to accessibility best practices in vault
+* Added a notification icon to the bundled icons available to use in the icon component's source prop
+* Exposed Status from the Banner component.
+* Fixed vertical alignment of text within full width variant of the button component
 
 ### Bug fixes
 * Fixed TextField overflow issues when inside Scrollable
