@@ -24,20 +24,6 @@ account to their Shopify store.
 
 ---
 
-## Purpose
-
-Put the merchant first by identifying the problem they face and the component that helps them solve it.
-
-### Problem
-
-Merchants need a way to authorize their third-party accounts to integrate with their Shopify store.
-
-### Solution
-
-The account component gives merchants a consistent and secure way to authorize their accounts and control permissions.
-
----
-
 ## Best practices
 
 The account component should:
@@ -116,16 +102,6 @@ Connect
 Connect to app
 
 <!-- end -->
-
-| Prop | Type | Description |
-| ---- | ---- | ----------- |
-| title | React.ReactNode | Element containing title |
-| details | React.ReactNode | Element containing details |
-| termsOfService | React.ReactNode | Element containing terms of service |
-| accountName | string | The name of the service |
-| avatarUrl | string | URL for the user’s avatar image |
-| connected | boolean | Set if the account is connected |
-| action | Action | Action for account connection |
 
 ## Examples
 
