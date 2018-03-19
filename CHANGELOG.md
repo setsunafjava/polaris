@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [these versioning and changelog guidelines][changelog-guidelines].
 
 <!-- ## Unreleased -->
+
+## 1.12.4 - 2018-03-19
+* Enhanced Avatar to work better when provided non-square images
+* Move documentation file so it's picked up by the styleguide
+
 ## 1.12.3 - 2018-03-16
 ### Bug fixes
 * Fixed disclosure centering on the tab component
