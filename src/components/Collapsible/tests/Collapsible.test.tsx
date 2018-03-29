@@ -5,25 +5,25 @@ import Collapsible from '../Collapsible';
 describe('<Collapsible />', () => {
   const ariaHiddenSelector = '[aria-hidden=true]';
 
-    it('indicates hidden with aria-hidden', () => {
-      const collapsible = shallow(
-        <Collapsible open={false}>
-          content
-        </Collapsible>,
-      );
+  it('indicates hidden with aria-hidden', () => {
+    const collapsible = shallow(
+      <Collapsible id="test-collapsible" open={false}>
+        content
+      </Collapsible>,
+    );
 
-      const hidden = collapsible.find(ariaHiddenSelector);
-      expect(hidden.exists()).toBe(true);
-    });
+    const hidden = collapsible.find(ariaHiddenSelector);
+    expect(hidden.exists()).toBe(true);
+  });
 
-    it('does not render aria-hidden when open', () => {
-      const collapsible = shallow(
-        <Collapsible open>
-          content
-        </Collapsible>,
-      );
+  it('does not render aria-hidden when open', () => {
+    const collapsible = shallow(
+      <Collapsible id="test-collapsible" open>
+        content
+      </Collapsible>,
+    );
 
-      const hidden = collapsible.find(ariaHiddenSelector);
-      expect(hidden.exists()).toBe(false);
-    });
+    const hidden = collapsible.find(ariaHiddenSelector);
+    expect(hidden.exists()).toBe(false);
+  });
 });

@@ -2,27 +2,40 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import {autobind} from '@shopify/javascript-utilities/decorators';
 import {classNames} from '@shopify/react-utilities/styles';
-import {addEventListener, removeEventListener} from '@shopify/javascript-utilities/events';
+import {
+  addEventListener,
+  removeEventListener,
+} from '@shopify/javascript-utilities/events';
 import {read} from '@shopify/javascript-utilities/fastdom';
+
+import pkg from '../../../package.json';
 
 import * as styles from './Collapsible.scss';
 
 export interface Props {
+  /** Assign a unique ID to the collapsible. For accessibility, pass this ID as the value of the triggering component’s aria-controls prop. */
+  id?: string;
   /** Toggle whether the collapsible is expanded or not. */
-  open: boolean,
+  open: boolean;
   /** The content to display inside the collapsible. */
-  children?: React.ReactNode,
+  children?: React.ReactNode;
 }
 
-export type AnimationState = 'idle' | 'measuring' | 'closingStart' | 'closing' | 'openingStart' | 'opening';
+export type AnimationState =
+  | 'idle'
+  | 'measuring'
+  | 'closingStart'
+  | 'closing'
+  | 'openingStart'
+  | 'opening';
 
 export interface State {
-  height?: number | null,
-  animationState: AnimationState,
+  height?: number | null;
+  animationState: AnimationState;
 }
 
 export interface Context {
-  parentCollapsibleExpanding: boolean,
+  parentCollapsibleExpanding: boolean;
 }
 
 const CONTEXT_TYPES = {
@@ -47,7 +60,8 @@ export default class Collapsible extends React.Component<Props, State> {
     const {animationState} = this.state;
     const {parentCollapsibleExpanding} = this.context;
     return {
-      parentCollapsibleExpanding: parentCollapsibleExpanding || (open && animationState !== 'idle'),
+      parentCollapsibleExpanding:
+        parentCollapsibleExpanding || (open && animationState !== 'idle'),
     };
   }
 
@@ -77,7 +91,8 @@ export default class Collapsible extends React.Component<Props, State> {
         case 'measuring':
           this.setState({
             animationState: wasOpen ? 'closingStart' : 'openingStart',
-            height: wasOpen && this.heightNode ? this.heightNode.scrollHeight : 0,
+            height:
+              wasOpen && this.heightNode ? this.heightNode.scrollHeight : 0,
           });
           break;
         case 'closingStart':
@@ -96,17 +111,21 @@ export default class Collapsible extends React.Component<Props, State> {
   }
 
   componentDidMount() {
-    if (this.node == null) { return; }
+    if (this.node == null) {
+      return;
+    }
     addEventListener(this.node, 'transitionend', this.handleTransitionEnd);
   }
 
   componentWillUnmount() {
-    if (this.node == null) { return; }
+    if (this.node == null) {
+      return;
+    }
     removeEventListener(this.node, 'transitionend', this.handleTransitionEnd);
   }
 
   render() {
-    const {children, open} = this.props;
+    const {id, open, children} = this.props;
     const {animationState, height} = this.state;
 
     const animating = animationState !== 'idle';
@@ -119,20 +138,28 @@ export default class Collapsible extends React.Component<Props, State> {
 
     const displayHeight = collapsibleHeight(open, animationState, height);
 
-    const content = animating || open
-      ? children
-      : null;
+    const content = animating || open ? children : null;
+    /* TODO before v2 release: remove this conditional and line 9 */
+    if (!id && pkg.version[0] === '1') {
+      /* eslint-disable no-console */
+      console.group('Polaris');
+      console.info(`You are currently using version ${pkg.version}.`);
+      console.warn(
+        '[Deprecation] The new `id` prop on Collapsible will be required from version 2.0.0 onward.',
+      );
+      console.groupEnd();
+      /* eslint-enable no-console */
+    }
 
     return (
       <div
+        id={id}
         aria-hidden={!open}
         style={{height: displayHeight}}
         className={wrapperClassName}
         ref={this.bindNode}
       >
-        <div ref={this.bindHeightNode}>
-          {content}
-        </div>
+        <div ref={this.bindHeightNode}>{content}</div>
       </div>
     );
   }
@@ -156,7 +183,11 @@ export default class Collapsible extends React.Component<Props, State> {
   }
 }
 
-function collapsibleHeight(open: boolean, animationState: AnimationState, height?: number | null) {
+function collapsibleHeight(
+  open: boolean,
+  animationState: AnimationState,
+  height?: number | null,
+) {
   if (animationState === 'idle' && open) {
     return open ? 'auto' : null;
   }
