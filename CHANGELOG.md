@@ -6,6 +6,16 @@ The format is based on [these versioning and changelog guidelines][changelog-gui
 
 <!-- ## Unreleased -->
 
+## 1.14.2 - 2018-05-02
+
+_This will be the last v1.x release outside of critical security fixes._
+
+### Bug fixes
+
+* Add margin-left spacing to disclosure icon within Button component
+* Remove margins on segmented ButtonGroup
+* Fixed text alignment of link so that it inherits from its parent node
+
 ## 1.14.1 - 2018-04-10
 
 ### Bug fixes
@@ -70,11 +80,6 @@ The format is based on [these versioning and changelog guidelines][changelog-gui
 * Updated component examples that use state to use an es6 class.
 
 ## 1.12.0 - 2018-02-28
-
-* Added link to accessibility best practices in vault
-* Added a notification icon to the bundled icons available to use in the icon component's source prop
-* Exposed Status from the Banner component.
-* Fixed vertical alignment of text within full width variant of the button component
 
 ### Bug fixes
 
